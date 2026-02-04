@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_29c87e52405d3f017c2087a80b4360d1 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="
+     position: fixed;
+     bottom: 40px; left: 40px;
+     width: 260px; padding: 10px;
+     background-color: white;
+     border: 2px solid grey;
+     z-index: 9999;
+     font-size: 12px;
+">
+<b>Bear</b><br>
+<span style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:#ff9999;"></span>A<br><span style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:#9999ff;"></span>B<br><span style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:#99ff99;"></span>C<br><span style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:#c299ff;"></span>D<br><span style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:#ffcc80;"></span>E<br><span style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:#ff8080;"></span>F<br><br>
+<b>Human</b><br>
+<span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #cc0000;"></span>A<br><span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #0000cc;"></span>B<br><span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #008000;"></span>C<br><span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #4b0082;"></span>D<br><span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #ff8c00;"></span>E<br><span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #990000;"></span>F<br><span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #004c99;"></span>G<br><span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #006600;"></span>H<br><span style="display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;border:2px solid #660099;"></span>I<br>
+<hr style="margin:4px 0;">
+<span style="display:inline-block;width:40px;border-top:2px dashed #555;"></span> Bear links<br>
+<span style="display:inline-block;width:40px;border-top:2px dotted #555;"></span> Human links
+</div>
+    
+            <div class="folium-map" id="map_29c87e52405d3f017c2087a80b4360d1" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_29c87e52405d3f017c2087a80b4360d1 = L.map(
+                "map_29c87e52405d3f017c2087a80b4360d1",
+                {
+                    center: [24.8, 86.9],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0e5f6655ccc95f5e72b96799918cd8b4 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_0e5f6655ccc95f5e72b96799918cd8b4.addTo(map_29c87e52405d3f017c2087a80b4360d1);
+        
+    
+            var feature_group_559a969f0eb23372d45472cabf96b50d = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_cd1b55344734ca2828b36cb49b0cea77 = L.circleMarker(
+                [24.241552, 86.75556],
+                {"bubblingMouseEvents": true, "color": "#ff8080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff8080", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_b256d8de21b4c891d3602c221f279892 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5763e44f4400e2dc3e0126b5639485cf = $(`<div id="html_5763e44f4400e2dc3e0126b5639485cf" style="width: 100.0%; height: 100.0%;">Location: Santali, Jharkhand 24.241552, 86.755560<br>Bear: F<br>Suspect: A<br><a href='https://www.youtube.com/watch?v=eVj0A6x7qaE' target='_blank'>Video</a></div>`)[0];
+                popup_b256d8de21b4c891d3602c221f279892.setContent(html_5763e44f4400e2dc3e0126b5639485cf);
+            
+        
+
+        circle_marker_cd1b55344734ca2828b36cb49b0cea77.bindPopup(popup_b256d8de21b4c891d3602c221f279892)
+        ;
+
+        
+    
+    
+            var circle_marker_4fb58bd378d1d2889ec7f686fd5eb187 = L.circleMarker(
+                [24.645072, 87.682542],
+                {"bubblingMouseEvents": true, "color": "#ff9999", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9999", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_1434bad44cdb9d1e9beb50b34531fa31 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6d86145fac520c97d3153f6ee5526862 = $(`<div id="html_6d86145fac520c97d3153f6ee5526862" style="width: 100.0%; height: 100.0%;">Location: Darajmath, Jharkhand  24.645072, 87.682542<br>Bear: A<br>Suspect: A<br><a href='https://www.youtube.com/shorts/utt5PSiEujs' target='_blank'>Video</a></div>`)[0];
+                popup_1434bad44cdb9d1e9beb50b34531fa31.setContent(html_6d86145fac520c97d3153f6ee5526862);
+            
+        
+
+        circle_marker_4fb58bd378d1d2889ec7f686fd5eb187.bindPopup(popup_1434bad44cdb9d1e9beb50b34531fa31)
+        ;
+
+        
+    
+    
+            var circle_marker_291ba844a88770b5110f7eca3f3b4f1e = L.circleMarker(
+                [24.662381, 87.357497],
+                {"bubblingMouseEvents": true, "color": "#9999ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9999ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_799ee4a29c95bd440ee883e3e035d39b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1e2e35fe522add471e3ba5609f654c4d = $(`<div id="html_1e2e35fe522add471e3ba5609f654c4d" style="width: 100.0%; height: 100.0%;">Location: Karamtola, Jharkhand 24.662381, 87.357497<br>Bear: B<br>Suspect: B<br><a href='https://www.youtube.com/shorts/p9CKTV47ElY' target='_blank'>Video</a></div>`)[0];
+                popup_799ee4a29c95bd440ee883e3e035d39b.setContent(html_1e2e35fe522add471e3ba5609f654c4d);
+            
+        
+
+        circle_marker_291ba844a88770b5110f7eca3f3b4f1e.bindPopup(popup_799ee4a29c95bd440ee883e3e035d39b)
+        ;
+
+        
+    
+    
+            var circle_marker_0733e30471e9219cffc7ed3fa4c3ff50 = L.circleMarker(
+                [24.407426, 86.171317],
+                {"bubblingMouseEvents": true, "color": "#99ff99", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#99ff99", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_1f48dcaca43fc88d4c6b185419f0f16d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_761eb7ed580db300a48a0b34aec3c2a8 = $(`<div id="html_761eb7ed580db300a48a0b34aec3c2a8" style="width: 100.0%; height: 100.0%;">Location: Pargodih (Nr Jamua), Jharkhand 24.407426, 86.171317<br>Bear: C<br>Suspect: C<br><a href='https://youtube.com/shorts/3DkvtXCt-Ck?si=CecwO51jPsrs9LjJ' target='_blank'>Video</a></div>`)[0];
+                popup_1f48dcaca43fc88d4c6b185419f0f16d.setContent(html_761eb7ed580db300a48a0b34aec3c2a8);
+            
+        
+
+        circle_marker_0733e30471e9219cffc7ed3fa4c3ff50.bindPopup(popup_1f48dcaca43fc88d4c6b185419f0f16d)
+        ;
+
+        
+    
+    
+            var circle_marker_260a88e26a7c736ac51d63db98b43ca6 = L.circleMarker(
+                [24.238904, 87.469315],
+                {"bubblingMouseEvents": true, "color": "#9999ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9999ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_d67353fcfe4086e61013620d30d0c128 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d1594dc2cebc3edf493b1a13600a4fd2 = $(`<div id="html_d1594dc2cebc3edf493b1a13600a4fd2" style="width: 100.0%; height: 100.0%;">Location: Dumka shikaripara, Jharkhand 24.238904, 87.469315<br>Bear: B<br>Suspect: D<br><a href='https://www.facebook.com/reel/25737329119226622' target='_blank'>Video</a></div>`)[0];
+                popup_d67353fcfe4086e61013620d30d0c128.setContent(html_d1594dc2cebc3edf493b1a13600a4fd2);
+            
+        
+
+        circle_marker_260a88e26a7c736ac51d63db98b43ca6.bindPopup(popup_d67353fcfe4086e61013620d30d0c128)
+        ;
+
+        
+    
+    
+            var circle_marker_004a72b3419aa27037c1e4b7d210ed62 = L.circleMarker(
+                [24.280129, 87.383645],
+                {"bubblingMouseEvents": true, "color": "#9999ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9999ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_ace9108f5015236b200c179040b2e00a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8859325826a9975922fa74ad39a8930e = $(`<div id="html_8859325826a9975922fa74ad39a8930e" style="width: 100.0%; height: 100.0%;">Location: Dumka Sidpahari, Jharkhand 24.280129, 87.383645<br>Bear: B<br>Suspect: E<br><a href='https://www.facebook.com/reel/1929716834625578' target='_blank'>Video</a></div>`)[0];
+                popup_ace9108f5015236b200c179040b2e00a.setContent(html_8859325826a9975922fa74ad39a8930e);
+            
+        
+
+        circle_marker_004a72b3419aa27037c1e4b7d210ed62.bindPopup(popup_ace9108f5015236b200c179040b2e00a)
+        ;
+
+        
+    
+    
+            var circle_marker_fe349205c075f0f4704455e9408bf15a = L.circleMarker(
+                [25.987082, 87.357506],
+                {"bubblingMouseEvents": true, "color": "#c299ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c299ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_10a9e1514d7988b7bdcdebb185e031fb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_63e99686677856da72108811bb6cc7a3 = $(`<div id="html_63e99686677856da72108811bb6cc7a3" style="width: 100.0%; height: 100.0%;">Location: Bousi Barathad, Bihar  25.987082, 87.357506<br>Bear: D<br>Suspect: F<br><a href='https://www.facebook.com/reel/871581758590721' target='_blank'>Video</a></div>`)[0];
+                popup_10a9e1514d7988b7bdcdebb185e031fb.setContent(html_63e99686677856da72108811bb6cc7a3);
+            
+        
+
+        circle_marker_fe349205c075f0f4704455e9408bf15a.bindPopup(popup_10a9e1514d7988b7bdcdebb185e031fb)
+        ;
+
+        
+    
+    
+            var circle_marker_0c5bb4822b398734e1c42804a8fc6bb3 = L.circleMarker(
+                [24.322344, 86.598125],
+                {"bubblingMouseEvents": true, "color": "#9999ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9999ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_99ff360e6ba8af8f2e0bf1b77f6e1968 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2add7c2b4324304ce1935b00d12ab3e6 = $(`<div id="html_2add7c2b4324304ce1935b00d12ab3e6" style="width: 100.0%; height: 100.0%;">Location: Domohani, Jharkhand  24.322344, 86.598125<br>Bear: B<br>Suspect: G<br><a href='https://www.facebook.com/reel/1583644142836701' target='_blank'>Video</a></div>`)[0];
+                popup_99ff360e6ba8af8f2e0bf1b77f6e1968.setContent(html_2add7c2b4324304ce1935b00d12ab3e6);
+            
+        
+
+        circle_marker_0c5bb4822b398734e1c42804a8fc6bb3.bindPopup(popup_99ff360e6ba8af8f2e0bf1b77f6e1968)
+        ;
+
+        
+    
+    
+            var circle_marker_e16a54e55c037ffe6e75ea6e81d89b37 = L.circleMarker(
+                [24.345201, 86.637731],
+                {"bubblingMouseEvents": true, "color": "#9999ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9999ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_7730624c512a4e8feba0069b0340450b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_39d4790d7d0a94c324b381f146242a11 = $(`<div id="html_39d4790d7d0a94c324b381f146242a11" style="width: 100.0%; height: 100.0%;">Location: Nawadih, Jharkhand  24.345201, 86.637731<br>Bear: B<br>Suspect: H<br><a href='https://www.youtube.com/shorts/rpBnameq6Bg' target='_blank'>Video</a></div>`)[0];
+                popup_7730624c512a4e8feba0069b0340450b.setContent(html_39d4790d7d0a94c324b381f146242a11);
+            
+        
+
+        circle_marker_e16a54e55c037ffe6e75ea6e81d89b37.bindPopup(popup_7730624c512a4e8feba0069b0340450b)
+        ;
+
+        
+    
+    
+            var circle_marker_51b0ca960d04e826a59da2d9742dfab6 = L.circleMarker(
+                [25.906504, 87.477227],
+                {"bubblingMouseEvents": true, "color": "#ffcc80", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffcc80", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_a2b6719efc1ca49867cd66649e519792 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bae46de93ee08c87071e12704c247ac1 = $(`<div id="html_bae46de93ee08c87071e12704c247ac1" style="width: 100.0%; height: 100.0%;">Location: Jiyaganj Pipra Tola (Nr Purnia), Bihar 25.906504, 87.477227<br>Bear: E<br>Suspect: I<br><a href='https://www.facebook.com/share/r/1KRrFuJiCi/' target='_blank'>Video</a></div>`)[0];
+                popup_a2b6719efc1ca49867cd66649e519792.setContent(html_bae46de93ee08c87071e12704c247ac1);
+            
+        
+
+        circle_marker_51b0ca960d04e826a59da2d9742dfab6.bindPopup(popup_a2b6719efc1ca49867cd66649e519792)
+        ;
+
+        
+    
+    
+            var circle_marker_d6b8d08298e8dd3845e4ad79d2897c0d = L.circleMarker(
+                [24.519219, 87.067194],
+                {"bubblingMouseEvents": true, "color": "#c299ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c299ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_522b6d769112f4ce4fb94d6c0bb95fef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b6e6ddd54c2c5e82f55760139f03fa7b = $(`<div id="html_b6e6ddd54c2c5e82f55760139f03fa7b" style="width: 100.0%; height: 100.0%;">Location: Bhalua (24.519219, 87.067194) and Barmaniya (24.497274, 87.018018) (Nr Sariyahatt), Jharkhand<br>Bear: D<br>Suspect: F<br><a href='https://www.instagram.com/reels/DTehgpogZQu/' target='_blank'>Video</a></div>`)[0];
+                popup_522b6d769112f4ce4fb94d6c0bb95fef.setContent(html_b6e6ddd54c2c5e82f55760139f03fa7b);
+            
+        
+
+        circle_marker_d6b8d08298e8dd3845e4ad79d2897c0d.bindPopup(popup_522b6d769112f4ce4fb94d6c0bb95fef)
+        ;
+
+        
+    
+    
+            var circle_marker_97568c99a672aa7ef60b43ce0a38f601 = L.circleMarker(
+                [24.768546, 87.123649],
+                {"bubblingMouseEvents": true, "color": "#9999ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9999ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_af72f07bdbbd3f1b31cbe8cac3a11d5c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cdcf8e64fcddd175f240261bc7cc3b0d = $(`<div id="html_cdcf8e64fcddd175f240261bc7cc3b0d" style="width: 100.0%; height: 100.0%;">Location: Jalgo, (Nr Poreyahat) Jharkhand 24.768546, 87.123649<br>Bear: B<br>Suspect: B<br><a href='https://www.facebook.com/share/r/1EDKQeiGLR/' target='_blank'>Video</a></div>`)[0];
+                popup_af72f07bdbbd3f1b31cbe8cac3a11d5c.setContent(html_cdcf8e64fcddd175f240261bc7cc3b0d);
+            
+        
+
+        circle_marker_97568c99a672aa7ef60b43ce0a38f601.bindPopup(popup_af72f07bdbbd3f1b31cbe8cac3a11d5c)
+        ;
+
+        
+    
+    
+            var circle_marker_01fdd06a330de029a4113672626ea6a4 = L.circleMarker(
+                [24.589686, 87.082855],
+                {"bubblingMouseEvents": true, "color": "#99ff99", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#99ff99", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 0}
+            ).addTo(feature_group_559a969f0eb23372d45472cabf96b50d);
+        
+    
+        var popup_32d94129e5e9cae87dc3f560c854cc30 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2690dd1644eca33d1b914d5e16824a43 = $(`<div id="html_2690dd1644eca33d1b914d5e16824a43" style="width: 100.0%; height: 100.0%;">Location: Parkheta, Jharkhand 24.589686, 87.082855<br>Bear: C<br>Suspect: H<br><a href='https://www.facebook.com/share/r/1DRncuowE6/' target='_blank'>Video</a></div>`)[0];
+                popup_32d94129e5e9cae87dc3f560c854cc30.setContent(html_2690dd1644eca33d1b914d5e16824a43);
+            
+        
+
+        circle_marker_01fdd06a330de029a4113672626ea6a4.bindPopup(popup_32d94129e5e9cae87dc3f560c854cc30)
+        ;
+
+        
+    
+    
+            feature_group_559a969f0eb23372d45472cabf96b50d.addTo(map_29c87e52405d3f017c2087a80b4360d1);
+        
+    
+            var feature_group_7e4eb3f69819c6659d68af52ed297734 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_da65e6bfd6ef4bc611a7ecef92825acd = L.circleMarker(
+                [24.241552, 86.75556],
+                {"bubblingMouseEvents": true, "color": "#cc0000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#cc0000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_9234bbb2ffb4019e9899f0e17ae5b1c3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_27b7117d232e97654bc12a5929767268 = $(`<div id="html_27b7117d232e97654bc12a5929767268" style="width: 100.0%; height: 100.0%;">Location: Santali, Jharkhand 24.241552, 86.755560<br>Bear: F<br>Suspect: A<br><a href='https://www.youtube.com/watch?v=eVj0A6x7qaE' target='_blank'>Video</a></div>`)[0];
+                popup_9234bbb2ffb4019e9899f0e17ae5b1c3.setContent(html_27b7117d232e97654bc12a5929767268);
+            
+        
+
+        circle_marker_da65e6bfd6ef4bc611a7ecef92825acd.bindPopup(popup_9234bbb2ffb4019e9899f0e17ae5b1c3)
+        ;
+
+        
+    
+    
+            var circle_marker_74ea9a012d4f7d23ce4b0c672e3179f8 = L.circleMarker(
+                [24.645072, 87.682542],
+                {"bubblingMouseEvents": true, "color": "#cc0000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#cc0000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_acffdd742c7cec798f4d06f640174ad7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_06ed7b4e05c504c6496049ebcbc6c1fd = $(`<div id="html_06ed7b4e05c504c6496049ebcbc6c1fd" style="width: 100.0%; height: 100.0%;">Location: Darajmath, Jharkhand  24.645072, 87.682542<br>Bear: A<br>Suspect: A<br><a href='https://www.youtube.com/shorts/utt5PSiEujs' target='_blank'>Video</a></div>`)[0];
+                popup_acffdd742c7cec798f4d06f640174ad7.setContent(html_06ed7b4e05c504c6496049ebcbc6c1fd);
+            
+        
+
+        circle_marker_74ea9a012d4f7d23ce4b0c672e3179f8.bindPopup(popup_acffdd742c7cec798f4d06f640174ad7)
+        ;
+
+        
+    
+    
+            var circle_marker_3c2de430fa6d95403dffa2f3b6012077 = L.circleMarker(
+                [24.662381, 87.357497],
+                {"bubblingMouseEvents": true, "color": "#0000cc", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#0000cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_9252cf3e12370d2df0a3ea2b6f63d5e5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_747e590220596bc2ee2b6121c6aa1784 = $(`<div id="html_747e590220596bc2ee2b6121c6aa1784" style="width: 100.0%; height: 100.0%;">Location: Karamtola, Jharkhand 24.662381, 87.357497<br>Bear: B<br>Suspect: B<br><a href='https://www.youtube.com/shorts/p9CKTV47ElY' target='_blank'>Video</a></div>`)[0];
+                popup_9252cf3e12370d2df0a3ea2b6f63d5e5.setContent(html_747e590220596bc2ee2b6121c6aa1784);
+            
+        
+
+        circle_marker_3c2de430fa6d95403dffa2f3b6012077.bindPopup(popup_9252cf3e12370d2df0a3ea2b6f63d5e5)
+        ;
+
+        
+    
+    
+            var circle_marker_fdbb678b0cc34a0f4cb81b8496ec6392 = L.circleMarker(
+                [24.407426, 86.171317],
+                {"bubblingMouseEvents": true, "color": "#008000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#008000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_50448c31ab3f1a36f84f7612a35e283c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3f348e182a6e6fc1dc0c6da8c094283d = $(`<div id="html_3f348e182a6e6fc1dc0c6da8c094283d" style="width: 100.0%; height: 100.0%;">Location: Pargodih (Nr Jamua), Jharkhand 24.407426, 86.171317<br>Bear: C<br>Suspect: C<br><a href='https://youtube.com/shorts/3DkvtXCt-Ck?si=CecwO51jPsrs9LjJ' target='_blank'>Video</a></div>`)[0];
+                popup_50448c31ab3f1a36f84f7612a35e283c.setContent(html_3f348e182a6e6fc1dc0c6da8c094283d);
+            
+        
+
+        circle_marker_fdbb678b0cc34a0f4cb81b8496ec6392.bindPopup(popup_50448c31ab3f1a36f84f7612a35e283c)
+        ;
+
+        
+    
+    
+            var circle_marker_d5ba5cce546ef4248865e28fd12b1938 = L.circleMarker(
+                [24.238904, 87.469315],
+                {"bubblingMouseEvents": true, "color": "#4b0082", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4b0082", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_3c837afa68a88981e43436f91d6f926f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2e02637ffd0a07bb63c3c1851fa07062 = $(`<div id="html_2e02637ffd0a07bb63c3c1851fa07062" style="width: 100.0%; height: 100.0%;">Location: Dumka shikaripara, Jharkhand 24.238904, 87.469315<br>Bear: B<br>Suspect: D<br><a href='https://www.facebook.com/reel/25737329119226622' target='_blank'>Video</a></div>`)[0];
+                popup_3c837afa68a88981e43436f91d6f926f.setContent(html_2e02637ffd0a07bb63c3c1851fa07062);
+            
+        
+
+        circle_marker_d5ba5cce546ef4248865e28fd12b1938.bindPopup(popup_3c837afa68a88981e43436f91d6f926f)
+        ;
+
+        
+    
+    
+            var circle_marker_fe000054558bb4e882a7d04995ddee22 = L.circleMarker(
+                [24.280129, 87.383645],
+                {"bubblingMouseEvents": true, "color": "#ff8c00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ff8c00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_574b1bd5dc80fe8ee9787d6e6e302f4b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e4fe089eb9e1f48b20bf6b0a0259952a = $(`<div id="html_e4fe089eb9e1f48b20bf6b0a0259952a" style="width: 100.0%; height: 100.0%;">Location: Dumka Sidpahari, Jharkhand 24.280129, 87.383645<br>Bear: B<br>Suspect: E<br><a href='https://www.facebook.com/reel/1929716834625578' target='_blank'>Video</a></div>`)[0];
+                popup_574b1bd5dc80fe8ee9787d6e6e302f4b.setContent(html_e4fe089eb9e1f48b20bf6b0a0259952a);
+            
+        
+
+        circle_marker_fe000054558bb4e882a7d04995ddee22.bindPopup(popup_574b1bd5dc80fe8ee9787d6e6e302f4b)
+        ;
+
+        
+    
+    
+            var circle_marker_6b25d68e8ea195a9258ab5f368e4be2f = L.circleMarker(
+                [25.987082, 87.357506],
+                {"bubblingMouseEvents": true, "color": "#990000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#990000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_dc304c5811331a23c393e454d4b54a8d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_030e3e7142f70ddebb1194ea7797e854 = $(`<div id="html_030e3e7142f70ddebb1194ea7797e854" style="width: 100.0%; height: 100.0%;">Location: Bousi Barathad, Bihar  25.987082, 87.357506<br>Bear: D<br>Suspect: F<br><a href='https://www.facebook.com/reel/871581758590721' target='_blank'>Video</a></div>`)[0];
+                popup_dc304c5811331a23c393e454d4b54a8d.setContent(html_030e3e7142f70ddebb1194ea7797e854);
+            
+        
+
+        circle_marker_6b25d68e8ea195a9258ab5f368e4be2f.bindPopup(popup_dc304c5811331a23c393e454d4b54a8d)
+        ;
+
+        
+    
+    
+            var circle_marker_ff7d872bac5d79c272111a7b28e69f01 = L.circleMarker(
+                [24.322344, 86.598125],
+                {"bubblingMouseEvents": true, "color": "#004c99", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#004c99", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_20b2d59fd5308e4297fe00f45fe757f4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dd1a929391382a4979ae45283fcf91a3 = $(`<div id="html_dd1a929391382a4979ae45283fcf91a3" style="width: 100.0%; height: 100.0%;">Location: Domohani, Jharkhand  24.322344, 86.598125<br>Bear: B<br>Suspect: G<br><a href='https://www.facebook.com/reel/1583644142836701' target='_blank'>Video</a></div>`)[0];
+                popup_20b2d59fd5308e4297fe00f45fe757f4.setContent(html_dd1a929391382a4979ae45283fcf91a3);
+            
+        
+
+        circle_marker_ff7d872bac5d79c272111a7b28e69f01.bindPopup(popup_20b2d59fd5308e4297fe00f45fe757f4)
+        ;
+
+        
+    
+    
+            var circle_marker_6e18ec8842331a1229fdf54f428ad6fc = L.circleMarker(
+                [24.345201, 86.637731],
+                {"bubblingMouseEvents": true, "color": "#006600", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#006600", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_cd5120b234581c74c3ff735d6be816af = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_999dce210fb2a9d3c1804f7870ea86d5 = $(`<div id="html_999dce210fb2a9d3c1804f7870ea86d5" style="width: 100.0%; height: 100.0%;">Location: Nawadih, Jharkhand  24.345201, 86.637731<br>Bear: B<br>Suspect: H<br><a href='https://www.youtube.com/shorts/rpBnameq6Bg' target='_blank'>Video</a></div>`)[0];
+                popup_cd5120b234581c74c3ff735d6be816af.setContent(html_999dce210fb2a9d3c1804f7870ea86d5);
+            
+        
+
+        circle_marker_6e18ec8842331a1229fdf54f428ad6fc.bindPopup(popup_cd5120b234581c74c3ff735d6be816af)
+        ;
+
+        
+    
+    
+            var circle_marker_79c68a7bf6dd55fcdc8d37533ce6e166 = L.circleMarker(
+                [25.906504, 87.477227],
+                {"bubblingMouseEvents": true, "color": "#660099", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#660099", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_e4c414d705f52e6ee8c4ba820995c1bb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5367b4bd8cb7e53721c449149cc904e4 = $(`<div id="html_5367b4bd8cb7e53721c449149cc904e4" style="width: 100.0%; height: 100.0%;">Location: Jiyaganj Pipra Tola (Nr Purnia), Bihar 25.906504, 87.477227<br>Bear: E<br>Suspect: I<br><a href='https://www.facebook.com/share/r/1KRrFuJiCi/' target='_blank'>Video</a></div>`)[0];
+                popup_e4c414d705f52e6ee8c4ba820995c1bb.setContent(html_5367b4bd8cb7e53721c449149cc904e4);
+            
+        
+
+        circle_marker_79c68a7bf6dd55fcdc8d37533ce6e166.bindPopup(popup_e4c414d705f52e6ee8c4ba820995c1bb)
+        ;
+
+        
+    
+    
+            var circle_marker_8d4cdee237c6eaf0d1c1e2991e334ab3 = L.circleMarker(
+                [24.519219, 87.067194],
+                {"bubblingMouseEvents": true, "color": "#990000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#990000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_c04510e93e4d038696cc0118de2db4a5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3006e4b40ebb9b3e0676b7add3385cb2 = $(`<div id="html_3006e4b40ebb9b3e0676b7add3385cb2" style="width: 100.0%; height: 100.0%;">Location: Bhalua (24.519219, 87.067194) and Barmaniya (24.497274, 87.018018) (Nr Sariyahatt), Jharkhand<br>Bear: D<br>Suspect: F<br><a href='https://www.instagram.com/reels/DTehgpogZQu/' target='_blank'>Video</a></div>`)[0];
+                popup_c04510e93e4d038696cc0118de2db4a5.setContent(html_3006e4b40ebb9b3e0676b7add3385cb2);
+            
+        
+
+        circle_marker_8d4cdee237c6eaf0d1c1e2991e334ab3.bindPopup(popup_c04510e93e4d038696cc0118de2db4a5)
+        ;
+
+        
+    
+    
+            var circle_marker_a4ebffb24e98ce133ee97d8f8f69c362 = L.circleMarker(
+                [24.768546, 87.123649],
+                {"bubblingMouseEvents": true, "color": "#0000cc", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#0000cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_f90337ef3bf825bfab52b49beab0d61b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8f71c2205e1e3f6b20026766849382d4 = $(`<div id="html_8f71c2205e1e3f6b20026766849382d4" style="width: 100.0%; height: 100.0%;">Location: Jalgo, (Nr Poreyahat) Jharkhand 24.768546, 87.123649<br>Bear: B<br>Suspect: B<br><a href='https://www.facebook.com/share/r/1EDKQeiGLR/' target='_blank'>Video</a></div>`)[0];
+                popup_f90337ef3bf825bfab52b49beab0d61b.setContent(html_8f71c2205e1e3f6b20026766849382d4);
+            
+        
+
+        circle_marker_a4ebffb24e98ce133ee97d8f8f69c362.bindPopup(popup_f90337ef3bf825bfab52b49beab0d61b)
+        ;
+
+        
+    
+    
+            var circle_marker_6ce8e237c95bffc04aa366e6334b7d0f = L.circleMarker(
+                [24.589686, 87.082855],
+                {"bubblingMouseEvents": true, "color": "#006600", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#006600", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2.0}
+            ).addTo(feature_group_7e4eb3f69819c6659d68af52ed297734);
+        
+    
+        var popup_d324291ce73b52cecb601908241ba4bc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ce7e956dea4ca8aabe541cddf83c55d8 = $(`<div id="html_ce7e956dea4ca8aabe541cddf83c55d8" style="width: 100.0%; height: 100.0%;">Location: Parkheta, Jharkhand 24.589686, 87.082855<br>Bear: C<br>Suspect: H<br><a href='https://www.facebook.com/share/r/1DRncuowE6/' target='_blank'>Video</a></div>`)[0];
+                popup_d324291ce73b52cecb601908241ba4bc.setContent(html_ce7e956dea4ca8aabe541cddf83c55d8);
+            
+        
+
+        circle_marker_6ce8e237c95bffc04aa366e6334b7d0f.bindPopup(popup_d324291ce73b52cecb601908241ba4bc)
+        ;
+
+        
+    
+    
+            var feature_group_e0dc73882dfc4dafada9d2afebb5e474 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_502d7d961403b9bb4b274cc6aea8a58a = L.polyline(
+                [[24.662381, 87.357497], [24.238904, 87.469315], [24.280129, 87.383645], [24.322344, 86.598125], [24.345201, 86.637731], [24.768546, 87.123649]],
+                {"bubblingMouseEvents": true, "color": "#9999ff", "dashArray": "4,6", "dashOffset": null, "fill": false, "fillColor": "#9999ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_e0dc73882dfc4dafada9d2afebb5e474);
+        
+    
+            var poly_line_c5d4a8cc9cac7e969bb63547b87e6349 = L.polyline(
+                [[24.407426, 86.171317], [24.589686, 87.082855]],
+                {"bubblingMouseEvents": true, "color": "#99ff99", "dashArray": "4,6", "dashOffset": null, "fill": false, "fillColor": "#99ff99", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_e0dc73882dfc4dafada9d2afebb5e474);
+        
+    
+            var poly_line_d551a0f1899621965508bed63ea7751d = L.polyline(
+                [[25.987082, 87.357506], [24.519219, 87.067194]],
+                {"bubblingMouseEvents": true, "color": "#c299ff", "dashArray": "4,6", "dashOffset": null, "fill": false, "fillColor": "#c299ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_e0dc73882dfc4dafada9d2afebb5e474);
+        
+    
+            feature_group_e0dc73882dfc4dafada9d2afebb5e474.addTo(map_29c87e52405d3f017c2087a80b4360d1);
+        
+    
+            var feature_group_e75569df3923ecc278eea44ababde7c1 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_96994c671e1091bf3fbc00de665302d8 = L.polyline(
+                [[24.241552, 86.75556], [24.645072, 87.682542]],
+                {"bubblingMouseEvents": true, "color": "#cc0000", "dashArray": "2,6", "dashOffset": null, "fill": false, "fillColor": "#cc0000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_e75569df3923ecc278eea44ababde7c1);
+        
+    
+            var poly_line_27adcb7da72f57e7b93c31a0fd20674e = L.polyline(
+                [[24.662381, 87.357497], [24.768546, 87.123649]],
+                {"bubblingMouseEvents": true, "color": "#0000cc", "dashArray": "2,6", "dashOffset": null, "fill": false, "fillColor": "#0000cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_e75569df3923ecc278eea44ababde7c1);
+        
+    
+            var poly_line_3923d4ce15712aa7402504cb77969eb2 = L.polyline(
+                [[25.987082, 87.357506], [24.519219, 87.067194]],
+                {"bubblingMouseEvents": true, "color": "#990000", "dashArray": "2,6", "dashOffset": null, "fill": false, "fillColor": "#990000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_e75569df3923ecc278eea44ababde7c1);
+        
+    
+            var poly_line_74c7cc4b8ae48bd44a718dc35a43f084 = L.polyline(
+                [[24.345201, 86.637731], [24.589686, 87.082855]],
+                {"bubblingMouseEvents": true, "color": "#006600", "dashArray": "2,6", "dashOffset": null, "fill": false, "fillColor": "#006600", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_e75569df3923ecc278eea44ababde7c1);
+        
+    
+            var layer_control_68f61e9172bc76193b39f58ca3262e67_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_0e5f6655ccc95f5e72b96799918cd8b4,
+                },
+                overlays :  {
+                    "Bear layer" : feature_group_559a969f0eb23372d45472cabf96b50d,
+                    "Human layer" : feature_group_7e4eb3f69819c6659d68af52ed297734,
+                    "Bear links" : feature_group_e0dc73882dfc4dafada9d2afebb5e474,
+                    "Human links" : feature_group_e75569df3923ecc278eea44ababde7c1,
+                },
+            };
+            let layer_control_68f61e9172bc76193b39f58ca3262e67 = L.control.layers(
+                layer_control_68f61e9172bc76193b39f58ca3262e67_layers.base_layers,
+                layer_control_68f61e9172bc76193b39f58ca3262e67_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_29c87e52405d3f017c2087a80b4360d1);
+
+        
+</script>
+</html>
