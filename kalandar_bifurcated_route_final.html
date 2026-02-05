@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5e665d2a942909c51c6548dda642b8d1 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="
+     position: fixed;
+     bottom: 40px; left: 40px;
+     width: 260px; padding: 10px;
+     background-color: white;
+     border: 2px solid grey;
+     z-index: 9999;
+     font-size: 12px;
+">
+<b>Kalandar Route</b><br>
+<span style="font-size:14px;">&#8962;</span> Residence (Banka)<br>
+<span style="font-size:16px;color:orange;">&#9679;</span> Hideouts<br>
+<br>
+<span style="display:inline-block;width:10px;height:10px;border-radius:50%;
+       background:#7e57c2;margin-right:4px;"></span> Common performance villages<br>
+<span style="display:inline-block;width:10px;height:10px;border-radius:50%;
+       background:#2e7d32;margin-right:4px;"></span> Route 1 villages<br>
+<span style="display:inline-block;width:10px;height:10px;border-radius:50%;
+       background:#c62828;margin-right:4px;"></span> Route 2 villages<br>
+<br>
+<span style="display:inline-block;width:40px;border-top:3px solid #7e57c2;"></span> Common route<br>
+<span style="display:inline-block;width:40px;border-top:3px solid #2e7d32;"></span> Route 1<br>
+<span style="display:inline-block;width:40px;border-top:3px solid #c62828;"></span> Route 2
+</div>
+    
+            <div class="folium-map" id="map_5e665d2a942909c51c6548dda642b8d1" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5e665d2a942909c51c6548dda642b8d1 = L.map(
+                "map_5e665d2a942909c51c6548dda642b8d1",
+                {
+                    center: [24.8, 87.1],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_5b92e29ed57b572ea6f0b2513333946d = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5b92e29ed57b572ea6f0b2513333946d.addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+            var marker_cb87d9b8d09ba17f75d457f26e72d417 = L.marker(
+                [24.886546, 86.920864],
+                {
+}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+            var icon_ede9077b8f28275840b63fe7fe571598 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0146cba4849f88e5dcf4495cc7624262 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c420d5a848ae6fe596c7428c42a0b81d = $(`<div id="html_c420d5a848ae6fe596c7428c42a0b81d" style="width: 100.0%; height: 100.0%;">Banka (Bihar 813102)</div>`)[0];
+                popup_0146cba4849f88e5dcf4495cc7624262.setContent(html_c420d5a848ae6fe596c7428c42a0b81d);
+            
+        
+
+        marker_cb87d9b8d09ba17f75d457f26e72d417.bindPopup(popup_0146cba4849f88e5dcf4495cc7624262)
+        ;
+
+        
+    
+    
+                marker_cb87d9b8d09ba17f75d457f26e72d417.setIcon(icon_ede9077b8f28275840b63fe7fe571598);
+            
+    
+            var circle_marker_a9709bb995decbca9d6791e72f45d121 = L.circleMarker(
+                [24.7065, 87.06492],
+                {"bubblingMouseEvents": true, "color": "#7e57c2", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#7e57c2", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_97d76f269c77956deb9c39bdc1b8fea8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_67322a1b46924260430642e29426a797 = $(`<div id="html_67322a1b46924260430642e29426a797" style="width: 100.0%; height: 100.0%;">Bhaga (Bihar) (common)</div>`)[0];
+                popup_97d76f269c77956deb9c39bdc1b8fea8.setContent(html_67322a1b46924260430642e29426a797);
+            
+        
+
+        circle_marker_a9709bb995decbca9d6791e72f45d121.bindPopup(popup_97d76f269c77956deb9c39bdc1b8fea8)
+        ;
+
+        
+    
+    
+            var circle_marker_066ac36b6c8d910b2d4f9a849dc0ddd8 = L.circleMarker(
+                [24.6, 87.0799],
+                {"bubblingMouseEvents": true, "color": "#7e57c2", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#7e57c2", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_4fddadb10a8aff88e4bf64718e56eb8b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4c25957001d39459489e465a5dc1a92e = $(`<div id="html_4c25957001d39459489e465a5dc1a92e" style="width: 100.0%; height: 100.0%;">Hansdiha (common)</div>`)[0];
+                popup_4fddadb10a8aff88e4bf64718e56eb8b.setContent(html_4c25957001d39459489e465a5dc1a92e);
+            
+        
+
+        circle_marker_066ac36b6c8d910b2d4f9a849dc0ddd8.bindPopup(popup_4fddadb10a8aff88e4bf64718e56eb8b)
+        ;
+
+        
+    
+    
+            var circle_marker_f29f1ef3cb02a5eb1e620d55e510d610 = L.circleMarker(
+                [24.67903, 87.17967],
+                {"bubblingMouseEvents": true, "color": "#7e57c2", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#7e57c2", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_cd1bc5b02db6e36f2687919935b90b16 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1e151e599d08cfa16752a3bdc4e4e77a = $(`<div id="html_1e151e599d08cfa16752a3bdc4e4e77a" style="width: 100.0%; height: 100.0%;">Poreyahat (common)</div>`)[0];
+                popup_cd1bc5b02db6e36f2687919935b90b16.setContent(html_1e151e599d08cfa16752a3bdc4e4e77a);
+            
+        
+
+        circle_marker_f29f1ef3cb02a5eb1e620d55e510d610.bindPopup(popup_cd1bc5b02db6e36f2687919935b90b16)
+        ;
+
+        
+    
+    
+            var circle_marker_a7c219cfb7c159d3f2853cdb7110d460 = L.circleMarker(
+                [24.69437, 87.20707],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_07194c2bfaa9e53b335403aef2733f02 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_83a0937dd77746a9daac1df854064f1b = $(`<div id="html_83a0937dd77746a9daac1df854064f1b" style="width: 100.0%; height: 100.0%;">Gauripur (Route 1)</div>`)[0];
+                popup_07194c2bfaa9e53b335403aef2733f02.setContent(html_83a0937dd77746a9daac1df854064f1b);
+            
+        
+
+        circle_marker_a7c219cfb7c159d3f2853cdb7110d460.bindPopup(popup_07194c2bfaa9e53b335403aef2733f02)
+        ;
+
+        
+    
+    
+            var circle_marker_f9e5968bd1e3311a18d93a95d8f1ef01 = L.circleMarker(
+                [24.76084, 87.11485],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_b416d6f0d0762ee0a29361c6913ee7ac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7304b1f709780e405a69ae079d7888ce = $(`<div id="html_7304b1f709780e405a69ae079d7888ce" style="width: 100.0%; height: 100.0%;">Liladah (Jharkhand 814153) (Route 1)</div>`)[0];
+                popup_b416d6f0d0762ee0a29361c6913ee7ac.setContent(html_7304b1f709780e405a69ae079d7888ce);
+            
+        
+
+        circle_marker_f9e5968bd1e3311a18d93a95d8f1ef01.bindPopup(popup_b416d6f0d0762ee0a29361c6913ee7ac)
+        ;
+
+        
+    
+    
+            var circle_marker_f450f548de50d2a488af857d24ebf3e7 = L.circleMarker(
+                [24.76141, 87.14478],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_f6f71ad221b02a197e308d019aba8045 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4704485ba0058acfbbcf37a2b01fa91d = $(`<div id="html_4704485ba0058acfbbcf37a2b01fa91d" style="width: 100.0%; height: 100.0%;">Dahupadhar (Jharkhand) (Route 1)</div>`)[0];
+                popup_f6f71ad221b02a197e308d019aba8045.setContent(html_4704485ba0058acfbbcf37a2b01fa91d);
+            
+        
+
+        circle_marker_f450f548de50d2a488af857d24ebf3e7.bindPopup(popup_f6f71ad221b02a197e308d019aba8045)
+        ;
+
+        
+    
+    
+            var circle_marker_32a07b8f84801d6956c814c3d43735b2 = L.circleMarker(
+                [24.76842, 87.12358],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_8a11546fba9435c4a75614892e982d23 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b69795b42b20a45b159b836505a58486 = $(`<div id="html_b69795b42b20a45b159b836505a58486" style="width: 100.0%; height: 100.0%;">Jalgo, Jharkhand (Route 1)</div>`)[0];
+                popup_8a11546fba9435c4a75614892e982d23.setContent(html_b69795b42b20a45b159b836505a58486);
+            
+        
+
+        circle_marker_32a07b8f84801d6956c814c3d43735b2.bindPopup(popup_8a11546fba9435c4a75614892e982d23)
+        ;
+
+        
+    
+    
+            var circle_marker_5923d5fba805978c0a0af83846ccd90b = L.circleMarker(
+                [24.80524, 87.26929],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_7c27d6f1b754eeb9ef7cdc12b058698b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3d7835b087caccdae507904168246e52 = $(`<div id="html_3d7835b087caccdae507904168246e52" style="width: 100.0%; height: 100.0%;">Jamuni Paharpur (Jharkhand) (Route 1)</div>`)[0];
+                popup_7c27d6f1b754eeb9ef7cdc12b058698b.setContent(html_3d7835b087caccdae507904168246e52);
+            
+        
+
+        circle_marker_5923d5fba805978c0a0af83846ccd90b.bindPopup(popup_7c27d6f1b754eeb9ef7cdc12b058698b)
+        ;
+
+        
+    
+    
+            var circle_marker_286059909f017e46c5089502c18b120b = L.circleMarker(
+                [24.82552, 87.21351],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_0bdd027bec4206342564410bf766249a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_729b34c94123ea0f94127dfacf27d2be = $(`<div id="html_729b34c94123ea0f94127dfacf27d2be" style="width: 100.0%; height: 100.0%;">Godda (Jharkhand 814133) (Route 1)</div>`)[0];
+                popup_0bdd027bec4206342564410bf766249a.setContent(html_729b34c94123ea0f94127dfacf27d2be);
+            
+        
+
+        circle_marker_286059909f017e46c5089502c18b120b.bindPopup(popup_0bdd027bec4206342564410bf766249a)
+        ;
+
+        
+    
+    
+            var circle_marker_3ad8edd539878646a59578e5c0136afa = L.circleMarker(
+                [24.86398, 87.19898],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_19ffcb43649217391b098903c24ed743 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_829e0598d1a851857c4ece21ad51debc = $(`<div id="html_829e0598d1a851857c4ece21ad51debc" style="width: 100.0%; height: 100.0%;">Baliya (Jharkhand 814133) (Route 1)</div>`)[0];
+                popup_19ffcb43649217391b098903c24ed743.setContent(html_829e0598d1a851857c4ece21ad51debc);
+            
+        
+
+        circle_marker_3ad8edd539878646a59578e5c0136afa.bindPopup(popup_19ffcb43649217391b098903c24ed743)
+        ;
+
+        
+    
+    
+            var circle_marker_06583e387eef148e0fbc423e27bd2ff2 = L.circleMarker(
+                [24.88706, 87.20458],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_31888e964f9b50e10d2545d3796dbb09 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e125c43dfdf9c876b74acaa572b78cbe = $(`<div id="html_e125c43dfdf9c876b74acaa572b78cbe" style="width: 100.0%; height: 100.0%;">Bhagwan Chak (Jharkhand 814133) (Route 1)</div>`)[0];
+                popup_31888e964f9b50e10d2545d3796dbb09.setContent(html_e125c43dfdf9c876b74acaa572b78cbe);
+            
+        
+
+        circle_marker_06583e387eef148e0fbc423e27bd2ff2.bindPopup(popup_31888e964f9b50e10d2545d3796dbb09)
+        ;
+
+        
+    
+    
+            var circle_marker_9e545dca8d9b0d629f22bff2485979ae = L.circleMarker(
+                [24.92437, 87.21828],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_9761a6409b00e01f48aecdbab937d1e1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_577f5b5f719018e5eadc971e037fbded = $(`<div id="html_577f5b5f719018e5eadc971e037fbded" style="width: 100.0%; height: 100.0%;">Laugai (Jharkhand) (Route 1)</div>`)[0];
+                popup_9761a6409b00e01f48aecdbab937d1e1.setContent(html_577f5b5f719018e5eadc971e037fbded);
+            
+        
+
+        circle_marker_9e545dca8d9b0d629f22bff2485979ae.bindPopup(popup_9761a6409b00e01f48aecdbab937d1e1)
+        ;
+
+        
+    
+    
+            var circle_marker_7569dbd78a096e851d67bbfc7dbdeaff = L.circleMarker(
+                [24.96162, 87.18902],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e7d32", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_2ce02c8ac70de972adcdabd6146292c9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e092a72118e00fa15b2b3f48c3b3de3c = $(`<div id="html_e092a72118e00fa15b2b3f48c3b3de3c" style="width: 100.0%; height: 100.0%;">Resamba (Jharkhand 814155) (Route 1)</div>`)[0];
+                popup_2ce02c8ac70de972adcdabd6146292c9.setContent(html_e092a72118e00fa15b2b3f48c3b3de3c);
+            
+        
+
+        circle_marker_7569dbd78a096e851d67bbfc7dbdeaff.bindPopup(popup_2ce02c8ac70de972adcdabd6146292c9)
+        ;
+
+        
+    
+    
+            var circle_marker_1a7c0dacbdbe9067268a07fe27805402 = L.circleMarker(
+                [24.26847, 87.2488],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c62828", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_e30c962d703a6583dd942be73c2f8805 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2f183a625cdc0b65e907224dd0bbb576 = $(`<div id="html_2f183a625cdc0b65e907224dd0bbb576" style="width: 100.0%; height: 100.0%;">Dumka, Jharkhand (Route 2)</div>`)[0];
+                popup_e30c962d703a6583dd942be73c2f8805.setContent(html_2f183a625cdc0b65e907224dd0bbb576);
+            
+        
+
+        circle_marker_1a7c0dacbdbe9067268a07fe27805402.bindPopup(popup_e30c962d703a6583dd942be73c2f8805)
+        ;
+
+        
+    
+    
+            var circle_marker_291f2f46ba8cc6d6685a8830b50ab273 = L.circleMarker(
+                [24.50168, 87.29788],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c62828", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_6cc59d251440a054c10646d5381956d8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee76978b0e40465ec367fa6062d1b18b = $(`<div id="html_ee76978b0e40465ec367fa6062d1b18b" style="width: 100.0%; height: 100.0%;">Dholkatta (Jharkhand 814102) (Route 2)</div>`)[0];
+                popup_6cc59d251440a054c10646d5381956d8.setContent(html_ee76978b0e40465ec367fa6062d1b18b);
+            
+        
+
+        circle_marker_291f2f46ba8cc6d6685a8830b50ab273.bindPopup(popup_6cc59d251440a054c10646d5381956d8)
+        ;
+
+        
+    
+    
+            var circle_marker_88b09fd43a3a8f24a1b1edd1354990fc = L.circleMarker(
+                [24.58456, 87.20458],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c62828", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_7020e7cffd8d3fd769c9f5806f70c3ff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9dbe072a1048ff2566e8f2b87d762583 = $(`<div id="html_9dbe072a1048ff2566e8f2b87d762583" style="width: 100.0%; height: 100.0%;">Bara Ranbahiar (Jharkhand 814102) (Route 2)</div>`)[0];
+                popup_7020e7cffd8d3fd769c9f5806f70c3ff.setContent(html_9dbe072a1048ff2566e8f2b87d762583);
+            
+        
+
+        circle_marker_88b09fd43a3a8f24a1b1edd1354990fc.bindPopup(popup_7020e7cffd8d3fd769c9f5806f70c3ff)
+        ;
+
+        
+    
+    
+            var circle_marker_8dd834d2a766c127fafcdd98b4b7368e = L.circleMarker(
+                [24.59688, 87.22948],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c62828", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_75c1aa42273871fc10c7fbb02a2c60ec = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a39f33a34b3873e6fd8a97196fb3862c = $(`<div id="html_a39f33a34b3873e6fd8a97196fb3862c" style="width: 100.0%; height: 100.0%;">Bansmati (Route 2)</div>`)[0];
+                popup_75c1aa42273871fc10c7fbb02a2c60ec.setContent(html_a39f33a34b3873e6fd8a97196fb3862c);
+            
+        
+
+        circle_marker_8dd834d2a766c127fafcdd98b4b7368e.bindPopup(popup_75c1aa42273871fc10c7fbb02a2c60ec)
+        ;
+
+        
+    
+    
+            var circle_marker_b0a0f992a21726dd05b03597f3aa6349 = L.circleMarker(
+                [24.62838, 87.24815],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c62828", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_e612ff613b88fc74fc7da1fbf130ee6c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a32a3aadcd10c907a57ae1562bbee0e1 = $(`<div id="html_a32a3aadcd10c907a57ae1562bbee0e1" style="width: 100.0%; height: 100.0%;">Taljhari (Jharkhand 814102) (Route 2)</div>`)[0];
+                popup_e612ff613b88fc74fc7da1fbf130ee6c.setContent(html_a32a3aadcd10c907a57ae1562bbee0e1);
+            
+        
+
+        circle_marker_b0a0f992a21726dd05b03597f3aa6349.bindPopup(popup_e612ff613b88fc74fc7da1fbf130ee6c)
+        ;
+
+        
+    
+    
+            var circle_marker_febf35f17dec0d06a728da7fe29c624a = L.circleMarker(
+                [24.73557, 87.35377],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c62828", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_7c186e6363f733c673345d417515dfee = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d251061790d8edf2e377dd8a53d5bcdc = $(`<div id="html_d251061790d8edf2e377dd8a53d5bcdc" style="width: 100.0%; height: 100.0%;">Bara Kalhajor (Jharkhand 814156) (Route 2)</div>`)[0];
+                popup_7c186e6363f733c673345d417515dfee.setContent(html_d251061790d8edf2e377dd8a53d5bcdc);
+            
+        
+
+        circle_marker_febf35f17dec0d06a728da7fe29c624a.bindPopup(popup_7c186e6363f733c673345d417515dfee)
+        ;
+
+        
+    
+    
+            var circle_marker_bb5bc618c423ae7b83bfeb8904c01dbe = L.circleMarker(
+                [24.75465, 87.3426],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c62828", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_1589cfa6e10d31a3e970f9b25d079c33 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0e4b18566ab522560fb342eed147777d = $(`<div id="html_0e4b18566ab522560fb342eed147777d" style="width: 100.0%; height: 100.0%;">Tesuba Than (Jharkhand 814156) (Route 2)</div>`)[0];
+                popup_1589cfa6e10d31a3e970f9b25d079c33.setContent(html_0e4b18566ab522560fb342eed147777d);
+            
+        
+
+        circle_marker_bb5bc618c423ae7b83bfeb8904c01dbe.bindPopup(popup_1589cfa6e10d31a3e970f9b25d079c33)
+        ;
+
+        
+    
+    
+            var circle_marker_c7cefbcfa8f4af59281a8832fc05cf0b = L.circleMarker(
+                [24.8097, 87.52722],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c62828", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+        var popup_9ee2e3a7a49c94311a95ec8b6576b713 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c70d43517ebdbb8d3f7f4ca1f8736966 = $(`<div id="html_c70d43517ebdbb8d3f7f4ca1f8736966" style="width: 100.0%; height: 100.0%;">Mugdi (Jharkhand 816102) (Route 2)</div>`)[0];
+                popup_9ee2e3a7a49c94311a95ec8b6576b713.setContent(html_c70d43517ebdbb8d3f7f4ca1f8736966);
+            
+        
+
+        circle_marker_c7cefbcfa8f4af59281a8832fc05cf0b.bindPopup(popup_9ee2e3a7a49c94311a95ec8b6576b713)
+        ;
+
+        
+    
+    
+            var marker_7b9d5883ff48bdcf7f7be887ee48d857 = L.marker(
+                [24.93326, 87.21828],
+                {
+}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+            var icon_41573bfa1c4dac1893e7f9ddb16b08d1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "map-marker",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0e674513b315e5dab364c491e31d1981 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0af9eff9073f2e11af55b6e5b704366a = $(`<div id="html_0af9eff9073f2e11af55b6e5b704366a" style="width: 100.0%; height: 100.0%;">Ranipur (Jharkhand) – Route 1 hideout</div>`)[0];
+                popup_0e674513b315e5dab364c491e31d1981.setContent(html_0af9eff9073f2e11af55b6e5b704366a);
+            
+        
+
+        marker_7b9d5883ff48bdcf7f7be887ee48d857.bindPopup(popup_0e674513b315e5dab364c491e31d1981)
+        ;
+
+        
+    
+    
+                marker_7b9d5883ff48bdcf7f7be887ee48d857.setIcon(icon_41573bfa1c4dac1893e7f9ddb16b08d1);
+            
+    
+            var marker_0127f0301a4b490e0d78f67b43cb0002 = L.marker(
+                [24.63175, 87.18964],
+                {
+}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+            var icon_5aa188c9338b29e1d987618fd8dcf3af = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "map-marker",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f865c77df2aa8d4ae3044555f9cfa53c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5b44a692fe7b6bab7477fd212a73a47d = $(`<div id="html_5b44a692fe7b6bab7477fd212a73a47d" style="width: 100.0%; height: 100.0%;">Akasi (Jharkhand 814153) – Route 2 hideout</div>`)[0];
+                popup_f865c77df2aa8d4ae3044555f9cfa53c.setContent(html_5b44a692fe7b6bab7477fd212a73a47d);
+            
+        
+
+        marker_0127f0301a4b490e0d78f67b43cb0002.bindPopup(popup_f865c77df2aa8d4ae3044555f9cfa53c)
+        ;
+
+        
+    
+    
+                marker_0127f0301a4b490e0d78f67b43cb0002.setIcon(icon_5aa188c9338b29e1d987618fd8dcf3af);
+            
+    
+            var poly_line_d20c54d249691a22a8a1f4492a6c692d = L.polyline(
+                [[24.886546, 86.920864], [24.7065, 87.06492], [24.6, 87.0799], [24.67903, 87.17967]],
+                {"bubblingMouseEvents": true, "color": "#7e57c2", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#7e57c2", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+            var poly_line_61b43787f7de5ea8329b13b3eb2f9c4e = L.polyline(
+                [[24.67903, 87.17967], [24.69437, 87.20707], [24.76084, 87.11485], [24.76141, 87.14478], [24.76842, 87.12358], [24.80524, 87.26929], [24.82552, 87.21351], [24.86398, 87.19898], [24.88706, 87.20458], [24.92437, 87.21828], [24.93326, 87.21828], [24.96162, 87.18902]],
+                {"bubblingMouseEvents": true, "color": "#2e7d32", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2e7d32", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+    
+            var poly_line_9c64bae2e060bd608be33fd3d24dc82a = L.polyline(
+                [[24.67903, 87.17967], [24.63175, 87.18964], [24.26847, 87.2488], [24.50168, 87.29788], [24.58456, 87.20458], [24.59688, 87.22948], [24.62838, 87.24815], [24.73557, 87.35377], [24.75465, 87.3426], [24.8097, 87.52722]],
+                {"bubblingMouseEvents": true, "color": "#c62828", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#c62828", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5e665d2a942909c51c6548dda642b8d1);
+        
+</script>
+</html>
